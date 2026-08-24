@@ -2,7 +2,11 @@
 // confidence intervals, and normality tests for PAT batch data.
 package capability
 
-import "math"
+import (
+	"math"
+
+	"pat-batch/internal/stats"
+)
 
 // Indices holds the process capability indices for a parameter.
 type Indices struct {
@@ -43,6 +47,7 @@ func Compute(mean, sigmaWithin, sigmaOverall float64, spec SpecLimits) Indices {
 	if tau > 0 {
 		idx.Cpm = (spec.USL - spec.LSL) / (6 * tau)
 	}
+	idx.Cp, idx.Cpk, idx.Pp = stats.HoldCapIndices(idx.Cp, idx.Cpk, idx.Pp)
 	return idx
 }
 
