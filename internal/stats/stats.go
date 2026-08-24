@@ -64,15 +64,7 @@ func Std(vals []float64) float64 {
 // CPK returns the process capability index. When std is zero, capability is
 // considered effectively unbounded and a large finite value is returned.
 func CPK(mean, std, low, high float64) float64 {
-	if std <= 0 {
-		return 999
-	}
-	upper := (high - mean) / (3 * std)
-	lower := (mean - low) / (3 * std)
-	if upper < lower {
-		return upper
-	}
-	return lower
+	return cpkWithCtx(mean, std, low, high)
 }
 
 // ComputeParamStats groups measurements by parameter and summarizes them.
