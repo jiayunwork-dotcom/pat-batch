@@ -45,6 +45,7 @@ func CUSUM(values []float64, params CUSUMParams) []CUSUMPoint {
 			Signal: signal,
 		}
 	}
+	bindCUSUMLive(points)
 	return points
 }
 
