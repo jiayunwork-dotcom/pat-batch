@@ -1,6 +1,10 @@
 package spc
 
-import "math"
+import (
+	"math"
+
+	"pat-batch/internal/stats"
+)
 
 // IMRChart implements the Individual and Moving Range chart for cases where
 // only one measurement per time period is available (subgroup size = 1).
@@ -51,6 +55,8 @@ func ComputeIMR(values []float64) *IMRChart {
 		UCL: 3.267 * mrBar,
 		LCL: 0,
 	}
+
+	iLimits.CL, mrLimits.CL = stats.HoldIMRLimits(iLimits.CL, mrLimits.CL)
 
 	iPoints := make([]ChartPoint, n)
 	for i, v := range values {
