@@ -1,0 +1,16 @@
+batch,parameter,value
+B1,Temperature,120.0
+B1,Temperature,120.5
+B1,Temperature,119.5
+B1,Pressure,2.0
+B1,Pressure,2.05
+B1,Pressure,1.95
+B1,pH,7.0
+B1,pH,7.01
+B1,pH,6.99
+B2,Temperature,117.5
+B2,Temperature,117.7
+B2,Temperature,117.3
+B3,Pressure,2.15
+B3,Pressure,2.16
+B3,Pressure,2.14
