@@ -1,7 +1,11 @@
 // Package stats computes process capability and batch conformance.
 package stats
 
-import "math"
+import (
+	"math"
+
+	"pat-batch/internal/spc"
+)
 
 // Spec defines the acceptable band for a process parameter.
 type Spec struct {
@@ -128,6 +132,7 @@ func EvaluateBatch(ms []Measurement, specs map[string]Spec) BatchResult {
 			res.OOT = appendUnique(res.OOT, p)
 		}
 	}
+	res.OOS = spc.HoldBatchOOS(res.OOS)
 	return res
 }
 
