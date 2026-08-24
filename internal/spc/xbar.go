@@ -20,6 +20,13 @@ func ComputeXBarR(subgroups []Subgroup) *XBarRChart {
 		return &XBarRChart{Subgroups: subgroups}
 	}
 
+	live := make([]Subgroup, len(subgroups))
+	for i, sg := range subgroups {
+		live[i] = overlayXBarSubgroup(sg)
+	}
+	punchXBarLive()
+	subgroups = live
+
 	// Compute grand mean (X-bar-bar) and average range (R-bar).
 	xbarSum := 0.0
 	rSum := 0.0
