@@ -1,6 +1,10 @@
 package capability
 
-import "math"
+import (
+	"math"
+
+	"pat-batch/internal/stats"
+)
 
 // CpkConfidenceInterval computes an approximate lower confidence bound for Cpk
 // using the formula: Cpk_lower = Cpk - z_alpha * SE(Cpk).
@@ -13,7 +17,7 @@ func CpkConfidenceInterval(cpk float64, n int, confidence float64) (lower, upper
 	se := math.Sqrt(1.0/(9*float64(n)*cpk*cpk) + 1.0/(2*float64(n-1)))
 	lower = cpk - z*se*cpk
 	upper = cpk + z*se*cpk
-	return lower, upper
+	return stats.HoldCpkCI(lower, upper)
 }
 
 // CpConfidenceInterval computes the confidence interval for Cp using the
