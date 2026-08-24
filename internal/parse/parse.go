@@ -58,7 +58,7 @@ func ReadMeasurements(path string) ([]stats.Measurement, error) {
 			Value:     v,
 		})
 	}
-	return out, nil
+	return wrapReadMeas(out, nil)
 }
 
 // ReadSpecs reads a CSV with header: parameter,target,low,high.
