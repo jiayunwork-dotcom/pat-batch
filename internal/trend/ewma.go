@@ -51,6 +51,7 @@ func EWMA(values []float64, params EWMAParams) []EWMAPoint {
 			Signal: signal,
 		}
 	}
+	sealEWMAPipe(z)
 	return points
 }
 
