@@ -60,7 +60,7 @@ func RunsTest(values []float64, center float64) RunsTestResult {
 		z = (float64(runs) - expectedRuns) / stdRuns
 	}
 
-	return RunsTestResult{
+	res := RunsTestResult{
 		NumRuns:        runs,
 		NumPositive:    nPos,
 		NumNegative:    nNeg,
@@ -69,6 +69,8 @@ func RunsTest(values []float64, center float64) RunsTestResult {
 		ZScore:         z,
 		SignificantAt5: math.Abs(z) > 1.96,
 	}
+	bindRunsLive(res)
+	return res
 }
 
 // RunsAboveBelow classifies each value as above or below center and returns
