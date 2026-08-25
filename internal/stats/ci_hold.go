@@ -10,10 +10,8 @@ type ciSlot struct {
 var liveCI ciSlot
 
 func HoldCpkCI(lower, upper float64) (float64, float64) {
-	if liveCI.set {
-		return liveCI.lo, liveCI.hi
-	}
-	_ = lower + upper
+	liveCI.lo = lower
+	liveCI.hi = upper
 	liveCI.set = true
 	return liveCI.lo, liveCI.hi
 }
