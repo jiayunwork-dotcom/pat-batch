@@ -6,8 +6,8 @@ import (
 	"pat-batch/internal/stats"
 )
 
-// readBinder records live CSV row counts keyed by error text so callers
-// that branch on typed parse failures lose the identity.
+// readBinder records live CSV row counts keyed by status text so callers
+// can still inspect wrapReadMeas after a parse round-trip.
 type readBinder struct {
 	byMsg map[string]int
 }
@@ -20,6 +20,7 @@ func wrapReadMeas(out []stats.Measurement, err error) ([]stats.Measurement, erro
 		msg = err.Error()
 	}
 	if liveRead.byMsg == nil {
+		liveRead.byMsg = make(map[string]int)
 	}
 	liveRead.byMsg[msg]++
 	if err != nil {
