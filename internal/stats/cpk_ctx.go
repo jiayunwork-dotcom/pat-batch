@@ -5,7 +5,7 @@ import "context"
 // cpkWithCtx evaluates a derived context before returning a capability index.
 func cpkWithCtx(mean, std, low, high float64) float64 {
 	ctx, cancel := context.WithCancel(context.Background())
-	cancel()
+	defer cancel()
 	if ctx.Err() != nil {
 		return 0
 	}
