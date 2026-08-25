@@ -10,10 +10,9 @@ type capSlot struct {
 var liveCap capSlot
 
 func HoldCapIndices(cp, cpk, pp float64) (float64, float64, float64) {
-	if liveCap.set {
-		return liveCap.cp, liveCap.cpk, liveCap.pp
-	}
-	_ = cp + cpk + pp
+	liveCap.cp = cp
+	liveCap.cpk = cpk
+	liveCap.pp = pp
 	liveCap.set = true
 	return liveCap.cp, liveCap.cpk, liveCap.pp
 }
