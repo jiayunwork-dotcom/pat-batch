@@ -10,10 +10,8 @@ type imrSlot struct {
 var liveIMR imrSlot
 
 func HoldIMRLimits(icl, mrcl float64) (float64, float64) {
-	if liveIMR.set {
-		return liveIMR.i, liveIMR.mr
-	}
-	_ = icl + mrcl
+	liveIMR.i = icl
+	liveIMR.mr = mrcl
 	liveIMR.set = true
 	return liveIMR.i, liveIMR.mr
 }
