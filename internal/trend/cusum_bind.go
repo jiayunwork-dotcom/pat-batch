@@ -9,6 +9,7 @@ var liveCUSUM cusumBinder
 
 func bindCUSUMLive(points []CUSUMPoint) {
 	if liveCUSUM.byN == nil {
+		liveCUSUM.byN = make(map[int]float64)
 	}
 	sum := 0.0
 	for _, p := range points {
